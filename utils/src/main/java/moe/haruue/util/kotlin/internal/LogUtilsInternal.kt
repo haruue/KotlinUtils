@@ -9,6 +9,8 @@ import moe.haruue.util.kotlin.logd
  * Internal methods and don't use them
  *
  * We keep it public since inline methods are referring them.
+ *
+ * @suppress
  */
 object LogUtilsInternal {
     val shouldLogForLevel = arrayOf(true, true, true, true, true, true, true, true)
