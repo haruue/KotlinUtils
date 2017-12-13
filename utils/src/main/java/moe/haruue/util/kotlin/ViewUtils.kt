@@ -38,6 +38,8 @@ fun View.px2dp(px: Float): Int {
 
 /**
  * The absolute width of the available display size in pixels.
+ *
+ * @see [android.util.DisplayMetrics.widthPixels]
  */
 val Context.screenWidth: Int
     get() {
@@ -47,6 +49,8 @@ val Context.screenWidth: Int
 
 /**
  * The absolute width of the available display size in pixels.
+ *
+ * @see [android.util.DisplayMetrics.widthPixels]
  */
 val View.screenWidth: Int
     get() {
@@ -71,6 +75,8 @@ val View.screenHeight: Int
 
 /**
  * The absolute height of the available display size in pixels.
+ *
+ * @see [android.util.DisplayMetrics.heightPixels]
  */
 val Context.screenHeightWithStatusBar: Int
     get() {
@@ -80,6 +86,8 @@ val Context.screenHeightWithStatusBar: Int
 
 /**
  * The absolute height of the available display size in pixels.
+ *
+ * @see [android.util.DisplayMetrics.heightPixels]
  */
 val View.screenHeightWithStatusBar: Int
     get() {
