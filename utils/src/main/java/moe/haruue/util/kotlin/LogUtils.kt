@@ -51,6 +51,8 @@ object GlobalLogConfig {
 
 /**
  * use this method to modify global log config in DSL
+ *
+ * @see [GlobalLogConfig]
  */
 inline fun globalLogConfig(c: GlobalLogConfig.() -> Unit) {
     GlobalLogConfig.c()
