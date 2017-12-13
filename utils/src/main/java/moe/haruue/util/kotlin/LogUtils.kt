@@ -30,7 +30,8 @@ object GlobalLogConfig {
      * If you just don't want to see it, just use logcat filter instead.
      *
      * Common usage: (dismiss DEBUG or below level logs in release version)
-     * ```
+     *
+     * ```kotlin
      * globalLogConfig {
      *     shouldLogForLevel = { BuildConfig.DEBUG || it > Log.DEBUG }
      * }
@@ -136,7 +137,7 @@ inline fun Any.logwtf(msg: String, e: Throwable? = null) = logwtf(this.javaClass
  *
  * Pass all parameters to this method to log them
  *
- * ```
+ * ```kotlin
  * fun example(a: ClassA, b: ClassB) {
  *     logm(a, b)
  *     // method body...
@@ -154,14 +155,14 @@ inline fun logm(vararg args: Any?) = preCheck {
  * log return value without break the return statement.
  * Just add `.logr()` to the end of return statement.
  *
- * @see [logthis]
- *
- * ```
+ * ```kotlin
  * fun example(): Example {
  *     // method body...
  *     return r.logr()
  * }
  * ```
+ *
+ * @see [logthis]
  *
  */
 inline fun <reified T> T.logr(): T {
@@ -181,7 +182,7 @@ inline fun <reified T> T.logr(): T {
  *
  * Just add it to the end of a statement
  *
- * ```
+ * ```kotlin
  * val result = value1 + value2.logthis(msg = "value2") + value3
  * ```
  */

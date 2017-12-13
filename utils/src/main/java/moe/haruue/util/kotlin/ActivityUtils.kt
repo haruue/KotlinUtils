@@ -16,7 +16,8 @@ import android.support.annotation.RequiresApi
  * This method will auto add [Intent.FLAG_ACTIVITY_NEW_TASK] if [Context] is not a [Activity]
  *
  * Common usage:
- * ```
+ *
+ * ```kotlin
  * startActivity<ExampleActivity> {
  *     putExtra("param", param)
  * }
@@ -51,7 +52,8 @@ inline fun <reified T> Context.startActivity(options: Bundle, block: Intent.() -
  * Start activity [T] for result and you can modify the intent in [block]
  *
  * Common usage:
- * ```
+ *
+ * ```kotlin
  * startActivityForResult<ExampleActivity>(REQUEST_EXAMPLE) {
  *     putExtra("param", param)
  * }
@@ -82,7 +84,8 @@ inline fun <reified T> Activity.startActivityForResult(requestCode: Int, options
  * This method will auto add [Intent.FLAG_ACTIVITY_NEW_TASK] if [Context] is not a [Activity]
  *
  * Common usage:
- * ```
+ *
+ * ```kotlin
  * startActivity<ExampleActivity> {
  *     putExtra("param", param)
  * }
@@ -112,7 +115,8 @@ inline fun <reified T> Fragment.startActivity(options: Bundle, block: Intent.() 
  * Start activity [T] for result and you can modify the intent in [block]
  *
  * Common usage:
- * ```
+ *
+ * ```kotlin
  * startActivityForResult<ExampleActivity>(REQUEST_EXAMPLE) {
  *     putExtra("param", param)
  * }

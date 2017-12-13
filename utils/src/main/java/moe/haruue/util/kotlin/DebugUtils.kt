@@ -13,7 +13,8 @@ import android.util.Log
  * If you use [debug] {} before set it,  a ERROR level log will be print with `true` returned.
  *
  * A example would be like
- * ```
+ *
+ * ```kotlin
  * debugMode = BuildConfig.DEBUG
  * ```
  */
@@ -39,7 +40,7 @@ fun Context.autoDebugMode() {
  *
  * make sure you have set the [debugMode] or call [autoDebugMode] before you use it
  *
- * ```
+ * ```kotlin
  * debug {
  *     // do something you like in debug mode...
  * }
