@@ -6,57 +6,89 @@ import android.content.Context
 import android.util.TypedValue
 import android.view.View
 
-
+/**
+ * Convert dip to pixel
+ */
 fun Context.dp2px(dp: Float): Int {
     val scale = applicationContext.resources.displayMetrics.density
     return (dp * scale + 0.5f).toInt()
 }
 
+/**
+ * Convert dip to pixel
+ */
 fun View.dp2px(dp: Float): Int {
     return context.dp2px(dp)
 }
 
+/**
+ * Convert pixel to dip
+ */
 fun Context.px2dp(px: Float): Int {
     val scale = applicationContext.resources.displayMetrics.density
     return (px / scale + 0.5f).toInt()
 }
 
+/**
+ * Convert pixel to dip
+ */
 fun View.px2dp(px: Float): Int {
     return context.px2dp(px)
 }
 
+/**
+ * The absolute width of the available display size in pixels.
+ */
 val Context.screenWidth: Int
     get() {
         val dm = applicationContext.resources.displayMetrics
         return dm.widthPixels
     }
 
+/**
+ * The absolute width of the available display size in pixels.
+ */
 val View.screenWidth: Int
     get() {
         return context.screenWidth
     }
 
+/**
+ * The absolute height of the available display size in pixels, without status bar.
+ */
 val Context.screenHeight: Int
     get() {
         return screenHeightWithStatusBar - statusBarHeight
     }
 
+/**
+ * The absolute height of the available display size in pixels, without status bar.
+ */
 val View.screenHeight: Int
     get() {
         return context.screenHeight
     }
 
+/**
+ * The absolute height of the available display size in pixels.
+ */
 val Context.screenHeightWithStatusBar: Int
     get() {
         val dm = applicationContext.resources.displayMetrics
         return dm.heightPixels
     }
 
+/**
+ * The absolute height of the available display size in pixels.
+ */
 val View.screenHeightWithStatusBar: Int
     get() {
         return context.screenHeightWithStatusBar
     }
 
+/**
+ * The absolute height of the navigation bar size in pixels.
+ */
 val Context.navigationBarHeight: Int
     get() {
         var result = 0
@@ -67,11 +99,17 @@ val Context.navigationBarHeight: Int
         return result
     }
 
+/**
+ * The absolute height of the navigation bar size in pixels.
+ */
 val View.navigationBarHeight: Int
     get() {
         return context.navigationBarHeight
     }
 
+/**
+ * The absolute height of the status bar size in pixels.
+ */
 val Context.statusBarHeight: Int
     get() {
         var result = 0
@@ -82,6 +120,9 @@ val Context.statusBarHeight: Int
         return result
     }
 
+/**
+ * The absolute height of the action bar size in pixels.
+ */
 val Context.actionBarHeight: Int
     get() {
         var actionBarHeight = 0
