@@ -3,6 +3,7 @@
 buildscript {
     ext.kotlin_version = '1.2.0'
     ext.dokka_version = '0.9.15'
+    ext.support_version = '27.0.2'
     ext.version_code = 1
     ext.version_name = '0.1.0'
     ext.project_group = 'moe.haruue.kotlin'

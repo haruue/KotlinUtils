@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode version_code
         versionName version_name
@@ -25,10 +25,17 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:support-annotations:$support_version"
+    // don't upgrade compileSdkVersion because google did not release source
+    // code of 27 in SDK yet
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:$support_version"
 }
 
 repositories {
@@ -47,7 +54,7 @@ apply plugin: 'maven-publish'
 
 group = project_group
 version = version_name
-project.archivesBaseName = "utils"
+project.archivesBaseName = "utils-support"
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -117,7 +124,7 @@ bintray {
 
     pkg {
         repo = 'maven'
-        name = project_name + 'Common'
+        name = project_name + 'Support'
         desc = project_description
         websiteUrl = project_website
         issueTrackerUrl = project_website + '/issues'
