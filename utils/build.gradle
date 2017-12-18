@@ -30,10 +30,107 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:support-annotations:27.0.2'
 }
+
 repositories {
     mavenCentral()
 }
+
 dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
+}
+
+
+apply plugin: 'com.jfrog.bintray'
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven-publish'
+
+group = project_group
+version = version_name
+project.archivesBaseName = "utils"
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: dokka) {
+    classifier = 'javadoc'
+    from dokka.outputDirectory
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "haruue"
+            name "Haruue Icymoon"
+            email "i@haruue.moe"
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenKotlin(MavenPublication) {
+            artifactId project.archivesBaseName
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', project_description)
+                root.children().last() + pomConfig
+
+                def dependenciesNode = root.appendNode('dependencies')
+                configurations.compile.allDependencies.each {
+                    if (it.group && it.name && it.version) {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    publishing.publications.mavenKotlin.artifact(bundleRelease)
+}
+
+bintray {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    publications = ['mavenKotlin']
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = project_name + 'Common'
+        desc = project_description
+        websiteUrl = project_website
+        issueTrackerUrl = project_website + '/issues'
+        vcsUrl = project_website + '.git'
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+    }
+}
+
+bintrayUpload.dependsOn sourcesJar
+bintrayUpload.dependsOn javadocJar
+tasks.whenTaskAdded {
+    if (it.name == 'assembleRelease' || it.name == 'generatePomFileForMavenKotlinPublication') {
+        bintrayUpload.dependsOn it
+    }
 }
