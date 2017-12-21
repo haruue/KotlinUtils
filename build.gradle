@@ -4,8 +4,8 @@ buildscript {
     ext.kotlin_version = '1.2.0'
     ext.dokka_version = '0.9.15'
     ext.support_version = '27.0.2'
-    ext.version_code = 1
-    ext.version_name = '0.1.0'
+    ext.version_code = 2
+    ext.version_name = '0.1.1'
     ext.project_group = 'moe.haruue.kotlin'
     ext.project_description = 'Some useful kotlin utils for Android'
     ext.project_website = 'https://github.com/haruue/KotlinUtils'

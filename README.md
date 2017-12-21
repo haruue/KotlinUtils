@@ -10,7 +10,8 @@ repositories {
     maven { url 'https://dl.bintray.com/haruue/maven/' }
 }
 
-implementation 'moe.haruue.kotlin:utils:0.1.0'
+implementation 'moe.haruue.kotlin:utils:<latest-version>'
+implementation 'moe.haruue.kotlin:utils-support:<latest-version>' // for android support library
 ```
 
 ## Functions & Usage

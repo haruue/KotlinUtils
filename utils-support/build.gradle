@@ -35,7 +35,7 @@ dependencies {
     // don't upgrade compileSdkVersion because google did not release source
     // code of 27 in SDK yet
     //noinspection GradleCompatible
-    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:support-fragment:$support_version"
 }
 
 repositories {
