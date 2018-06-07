@@ -2,6 +2,7 @@
 
 package moe.haruue.util.kotlin.internal
 
+import android.os.Build
 import android.util.Log
 import moe.haruue.util.kotlin.logd
 
@@ -25,10 +26,15 @@ object LogUtilsInternal {
     inline fun internalLog(nt: (tag: String, msg: String) -> Int,
                            wt: (tag: String, msg: String, tr: Throwable) -> Int,
                            tag: String, msg: String, tr: Throwable?): Int {
-        return if (tr == null) {
-            nt(tag, msg)
+        val shortTag = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
+            tag.take(23)
         } else {
-            wt(tag, msg, tr)
+            tag
+        }
+        return if (tr == null) {
+            nt(shortTag, msg)
+        } else {
+            wt(shortTag, msg, tr)
         }
     }
 

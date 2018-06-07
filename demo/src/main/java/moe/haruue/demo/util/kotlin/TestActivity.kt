@@ -18,6 +18,7 @@ class TestActivity : AppCompatActivity() {
         }
         example1("hello", 233)
         example2()
+        LongLongLongLongLongLongLongLongLongLongName().example1("world", 666)
     }
 
     fun example1(str: String, int: Int): String {
@@ -32,6 +33,13 @@ class TestActivity : AppCompatActivity() {
         logw("logw")
         loge("loge")
         logwtf("logwtf")
+    }
+
+    class LongLongLongLongLongLongLongLongLongLongName {
+        fun example1(str: String, int: Int): String {
+            logm(str, int)
+            return "$str, $int, ${str.logthis(msg = "example of logthis, example1()#end#str") + int}".logr()
+        }
     }
 
 }

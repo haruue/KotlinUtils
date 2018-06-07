@@ -17,9 +17,9 @@ import android.os.Parcelable
  * ```
  *
  */
-inline fun <reified T> Parcel.readMutableList(): MutableList<T> {
+inline fun <reified T> Parcel.readMutableList(): MutableList<T>? {
     @Suppress("UNCHECKED_CAST")
-    return readArrayList(T::class.java.classLoader) as MutableList<T>
+    return readArrayList(T::class.java.classLoader) as MutableList<T>?
 }
 
 /**
